@@ -1,0 +1,73 @@
+﻿@page
+@model ListaDeProgramasEnRazo.Pages.programa3Model
+@{
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" integrity="sha384-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" crossorigin="anonymous">
+    <title>Evalua los valores del Binomio de Newton</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h3>Evalua los valores del Binomio de Newton</h3>
+        <div class="contenedorImg text-center">
+            <img src="~/img/programa3.png" class="img-fluid rounded" alt="Expresión" />
+        </div>
+        <form method="post">
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="a" class="form-label"><strong>a</strong>:</label>
+                        <input placeholder="Ingresa un valor" type="number" class="form-control" asp-for="a" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="b" class="form-label"><strong>b</strong>:</label>
+                        <input placeholder="Ingresa un valor" type="number" class="form-control" asp-for="b" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="x" class="form-label"><strong>x</strong>:</label>
+                        <input placeholder="Ingresa un valor" type="number" class="form-control" asp-for="x" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="y" class="form-label"><strong>y</strong>:</label>
+                        <input placeholder="Ingresa un valor" type="number" class="form-control" asp-for="y" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="n" class="form-label"><strong>n</strong>:</label>
+                        <input placeholder="Ingresa un valor" type="number" class="form-control" asp-for="n" />
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <input type="submit" class="btn btn-primary btn-lg" value="Calcular" />
+                    </div>
+                </div>
+            </div>
+            @if (Model.CalculoUno != 0 && Model.CalculoDos != 0)
+            {
+                <div class="mt-5">
+                    <h3>Resultado</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="resultado text-center">
+                                <img src="~/img/programa3-1.png" class="img-fluid rounded" alt="Expresión" />
+                                <p>Resultado = @Model.CalculoUno</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="resultado text-center">
+                                <img src="~/img/programa3-2.png" class="img-fluid rounded" alt="Expresión" />
+                                <p>Resultado = @Model.CalculoDos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </form>
+    </div>
+</body>
+</html>

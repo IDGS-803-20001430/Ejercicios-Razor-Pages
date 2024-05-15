@@ -1,0 +1,107 @@
+﻿@page
+@model ListaDeProgramasEnRazo.Pages.programa4Model
+@{
+    int[] arrAleatorio = new int[20];
+
+    Random random = new Random();
+    for (int i = 0; i < arrAleatorio.Length; i++)
+    {
+        arrAleatorio[i] = random.Next(101);
+    }
+
+    double suma = Suma(arrAleatorio);
+    double promedio = Promedio(suma, arrAleatorio.Length);
+    double moda = Moda(arrAleatorio);
+    double mediana = Mediana(arrAleatorio);
+
+}
+
+
+@functions {
+    double Suma(int[] num)
+    {
+        double suma = 0;
+
+        for (int i = 0; i < num.Length; i++)
+        {
+            suma = suma + num[i];
+        }
+        return suma;
+    }
+    double Promedio(double suma, int cantidad)
+    {
+        return (suma / cantidad);
+    }
+    double Moda(int[] num)
+    {
+        return num.GroupBy(x => x).OrderByDescending(g => g.Count()).First().Key;
+    }
+    double Mediana(int[] num)
+    {
+        double mediana = 0;
+        if (num.Length % 2 == 0)
+        {
+            int valorMedio1 = num.Length / 2 - 1;
+            int valorMedio2 = num.Length / 2;
+            mediana = (num[valorMedio1] + num[valorMedio2]) / 2.0;
+        }
+        else
+        {
+            int medio = num.Length / 2;
+            mediana = num[medio];
+        }
+        return mediana;
+    }
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultados</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Valores del Arreglo
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <ul class="list-group">
+                        @foreach (var num in arrAleatorio)
+                        {
+                            <li class="list-group-item">@num</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="card mt-5">
+            <div class="card-header">
+                Resultado de las operaciones
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item">Sumatoria: @suma</li>
+                    <li class="list-group-item">Promedio: @promedio</li>
+                    <li class="list-group-item">Moda: @moda</li>
+                    <li class="list-group-item">Mediana: @mediana</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shCk5KVw2O+mg5RusJl/Bo/hDH3+82P0eg5fF" crossorigin="anonymous"></script>
+</body>
+</html>
